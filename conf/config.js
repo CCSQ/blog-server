@@ -9,7 +9,10 @@ module.exports = {
 
 	port: 8081,
 
-	staticSources: '/staticSources',	// 静态资源地址头
+	staticSources: {	// 静态资源地址头
+		view: '/view/staticSources',
+		fater: '/view/staticSources',
+	},
 
 	log4j: {
 		appenders: {

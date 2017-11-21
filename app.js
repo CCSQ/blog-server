@@ -3,7 +3,7 @@ import path from 'path'
 import favicon from 'serve-favicon'
 import cookieParser from 'cookie-parser'
 import bodyParser from 'body-parser'
-import cors from 'cors'
+// import cors from 'cors'
 
 import { logInit, logger } from '@/conf/log'
 import config from '@/conf/config'
@@ -11,11 +11,11 @@ import config from '@/conf/config'
 const app = express()
 
 // 跨域
-app.use(cors({
-	origin: config.origin,
-	methods: ['PUT', 'POST', 'GET', 'DELETE', 'OPTIONS'],
-	allowHeaders: ['Content-Type', 'Authorization'],
-}))
+// app.use(cors({
+// 	origin: config.origin,
+// 	methods: ['PUT', 'POST', 'GET', 'DELETE', 'OPTIONS'],
+// 	allowHeaders: ['Content-Type', 'Authorization'],
+// }))
 
 // 设置post参数
 app.use(bodyParser.json())
@@ -28,7 +28,7 @@ app.use(cookieParser())
 app.use(favicon(path.join(__dirname, 'public', 'ico', 'favicon.ico')))
 
 // 设定静态文件目录
-app.use(config.staticSources, express.static(path.join(__dirname, 'public')))
+app.use(config.staticSources.view, express.static(path.join(__dirname, 'public')))
 
 // 过滤器中间件
 require('./filter')(app)
