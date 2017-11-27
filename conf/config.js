@@ -4,7 +4,7 @@ module.exports = {
 	sqlHost: 'localhost',
 	sqlUser: 'root',
 	sqlPassword: '123456',
-	sqlDatabase: 'ccmain',
+	sqlDatabase: 'blogdev',
 	connectionLimit: 20,
 
 	port: 8081,
@@ -41,10 +41,20 @@ module.exports = {
 					separator: ';'
 				}
 			},
+			sys: {
+				type: 'file',
+				filename: './logs/sys.log',
+				maxLogSize: 1024 * 1024,
+				layout: {
+					type: 'sysLog',
+					separator: ';'
+				}
+			},
 		},
 		categories: {
 			default: { appenders: [ 'file', 'console' ], level: 'INFO' },
 			sql: { appenders: [ 'sql' ], level: 'INFO' },
+			sys: { appenders: [ 'sys' ], level: 'INFO' },
 		},
 	},
 }

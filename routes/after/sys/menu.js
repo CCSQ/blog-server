@@ -1,7 +1,7 @@
 var express = require('express')
 var router = express.Router()
 
-var menuService = require('@/service/menu')
+var menuService = require('@/service/sys/menu')
 var StringUtils = require('@/utils/StringUtils')
 
 /**

@@ -16,7 +16,9 @@ export const Result = function (
 	this.code = code
 	this.msg = msg
 	this.data = data
-	this.pb = pb
+	if (pb.pageIndex) {
+		this.pb = pb
+	}
 }
 
 Result.prototype = {

@@ -240,7 +240,7 @@ const commitSelectSQL = (sql = '', param = []) => {
 				connection.release()
 				if (err) {
 					sqlLogger.error(`commit commitSelectSQL sql err : "${sql}" ; infor: ${err}`)
-					return resolve(ResultUtils.returnErrorResult('查询失败！'))
+					return reject(ResultUtils.returnErrorResult('查询失败！'))
 				}
 
 				resolve(ResultUtils.returnSuccessResult(undefined, results))

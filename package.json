@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "webpack & node ./dist/app.js"
+    "watch": "webpack --watch",
+    "dev": "cd ./dist && supervisor ./app.js"
   },
   "dependencies": {
     "body-parser": "~1.18.2",

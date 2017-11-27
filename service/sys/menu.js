@@ -1,5 +1,5 @@
 
-var menuDao = require('@/models/menu')
+var menuDao = require('@/models/sys/menu')
 
 module.exports = {
 	findByCondition: (map, pb) => {
