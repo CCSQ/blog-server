@@ -21,6 +21,7 @@ function changAllItemUpperCase(item) {
 
 
 module.exports = {
+
 	returnSuccessResult: (meg = returnMsg.success, data = [], pb) => {
 		let returnData
 		if (ObjectUtils.isArray(data)) {

@@ -5,6 +5,7 @@ import md5 from 'js-md5'
 import userService from '@/service/sys/user'
 import menuService from '@/service/sys/menu'
 import ResultUtils from '@/utils/ResultUtils'
+import UserUtils from '@/utils/UserUtils'
 import {returnCode,returnMsg} from '@/enum'
 import jwt from 'jsonwebtoken'
 var router = express.Router()
@@ -16,16 +17,19 @@ router.post('/login', (req, res, next) => {
 
 		let token = jwt.sign({name: user}, "Blog")
 
+		UserUtils.setCurrentUser(req, user)
+		// UserUtils.getCurrentUser(req, res)
 		menuService.getAllRoleMenuByUserId(user.id).then((menuResult) => {
-			console.log(menuResult)
+			if (menuResult.success) {
+				res.send(ResultUtils.returnSuccessResult("登陆成功", {
+					user: user,
+					token: token,
+					menu: menuResult.data,
+				}))
+			}
+		}, (menuError) => {
+			res.send(menuError)
 		})
-
-		console.log(user.userName)
-		console.log(user.status)
-		console.log(user.name)
-		console.log(user.id)
-
-
 	}, (error) => {
 		res.send(error)
 	})

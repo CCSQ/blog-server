@@ -75,7 +75,7 @@ module.exports = {
 				SELECT menu_id FROM t_relation_role_menu WHERE role_id in (
 					SELECT role_id from t_relation_user_role WHERE user_id = ?
 				)
-			) order by IFNULL(father_id, 9999999999) desc, IFNULL(order_number,9999999999) desc
+			) order by father_id, order_number desc
 		`
 
 		return dbConnect.commitSelectSQL(sql, [userId])

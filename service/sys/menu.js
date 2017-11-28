@@ -59,6 +59,8 @@ module.exports = {
 					result.data = newResultList
 				}
 				resolve(result)
+			}, (error) => {
+				reject(error)
 			})
 		})
 	},

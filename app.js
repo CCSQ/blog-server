@@ -2,8 +2,10 @@ import express from 'express'
 import path from 'path'
 import favicon from 'serve-favicon'
 import cookieParser from 'cookie-parser'
+import session from 'express-session'
 import bodyParser from 'body-parser'
 // import cors from 'cors'
+
 
 import { logInit, logger } from '@/conf/log'
 import config from '@/conf/config'
@@ -22,7 +24,16 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
 	extended: false
 }))
+
+// 定义cookie解析器
 app.use(cookieParser())
+app.use(session({
+	secret: 'blog',	// 加密session字符
+	name: 'SESSION_ID',	// cookie名字
+	cookie: {maxAge: 60000},	// cookie过期时间
+	resave: false,	// 是指每次请求都重新设置session cookie，假设你的cookie是6000毫秒过期，每次请求都会再设置6000毫秒。
+	saveUninitialized: true,	// 是指无论有没有session cookie，每次请求都设置个session cookie ，默认给个标示为 connect.sid
+}))
 
 // favicon设置
 app.use(favicon(path.join(__dirname, 'public', 'ico', 'favicon.ico')))
